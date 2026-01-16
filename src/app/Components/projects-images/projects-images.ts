@@ -6,6 +6,7 @@ import { ProjectImagesService } from '../../Services/project-images-service';
 import { ProjectImagesStatus } from '../../Services/SubComponents/project-images-status';
 import { Spinner } from "../spinner/spinner";
 import { CommonModule } from '@angular/common';
+import { Roles } from '../../Services/roles';
 
 @Component({
   selector: 'app-projects-images',
@@ -25,7 +26,9 @@ export class ProjectsImages implements OnInit {
     private projectImagesService: ProjectImagesService,
     private routing: ActivatedRoute,
     private router: Router,
-    private projectImagesStatus: ProjectImagesStatus
+    private projectImagesStatus: ProjectImagesStatus,
+    private roles: Roles,
+    
   ) {}
 
   ngOnInit(): void {
@@ -84,7 +87,13 @@ export class ProjectsImages implements OnInit {
   restoreDeletedImages() {
     this.router.navigate(['getdeletedprojectimages']);
   }
+ get isAdmin() {
+    return this.roles.isAdmin();
+  }
 
+  get isAuth() {
+    return this.roles.isAuthenticated();
+  }
   private showApiMessage(message: string, type: 'success' | 'error', timeout: number = 2000) {
     this.apiMessage = message;
     this.apiMessageType = type;
