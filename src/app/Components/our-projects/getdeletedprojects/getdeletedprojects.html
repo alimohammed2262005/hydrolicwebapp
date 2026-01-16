@@ -1,0 +1,32 @@
+<div *ngIf="apiMessage"
+     [ngClass]="{'alert': true, 'success': apiMessageType==='success', 'error': apiMessageType==='error'}"
+     style="margin: 0 auto 20px; text-align: center;">
+  {{ apiMessage }}
+</div>
+
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div class="projects-list" dir="rtl"
+     *ngIf="!loading && projects.length > 0"
+     [attr.data-count]="projects.length">
+  <div class="project-row" *ngFor="let project of projects">
+    <span class="project-name">{{ project.name }}</span>
+    <span class="project-type">{{ project.type }}</span>
+    <span class="project-image">
+      <img [src]="environment+'/uploads/'+ project.image"
+           alt="{{ project.image }}"
+           class="img-fluid rounded shadow-sm"
+           style="max-height: 280px; object-fit: cover; width: 100%;" />
+    </span>
+    <span class="project-description">{{ project.description }}</span>
+    <div class="row-actions">
+      <button class="btn btn-success" (click)="restoreproject(project.id)">استرجاع</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="projects.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد أى مشاريع محذوفة حتى الآن</h3>
+</div>

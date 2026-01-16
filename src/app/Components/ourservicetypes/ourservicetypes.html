@@ -1,0 +1,37 @@
+<div *ngIf="apiMessage"
+     [ngClass]="{'alert': true, 'success': apiMessageType==='success', 'error': apiMessageType==='error'}"
+     style="margin: 0 auto 20px; text-align: center;">
+  {{ apiMessage }}
+</div>
+
+<div class="action-buttons-vertical" *ngIf="services.length > 0" style="text-align: center; margin-bottom: 20px;">
+  <button class="btn btn-success" (click)="addServicetype()">إضافة عنصر خدمة</button>
+  <button class="btn btn-warning" *ngIf="hasDeletedServices" (click)="restoreDeletedServicetypes()">
+    إسترجاع عناصر الخدمات المحذوفة
+  </button>
+</div>
+
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div class="services-list" dir="rtl" *ngIf="!loading && services.length > 0" [attr.data-count]="services.length">
+  <div class="service-row" *ngFor="let service of services">
+    <span class="service-name">{{ service.serviceName }}</span>
+    <div class="service-image">
+      <img [src]="environment + '/uploads/' + service.image" alt="{{ service.serviceName }}">
+    </div>
+    <span class="service-description">{{ service.description }}</span>
+    <div class="row-actions">
+      <button class="btn btn-primary" (click)="updateServicetype(service.id)">تعديل</button>
+      <button class="btn btn-danger" (click)="deleteServiceById(service.id)">حذف</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="services.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد أى عناصر للخدمة حتى الآن</h3>
+  <span>
+    <button *ngIf="isAdmin && isAuth" (click)="addServicetype()">أضف الأن</button>
+  </span>
+</div>

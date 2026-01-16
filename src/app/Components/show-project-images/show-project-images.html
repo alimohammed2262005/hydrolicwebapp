@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>هيدرو ماكس للهيدروليك والنيوماتيك والتشكيل المعدنى</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تعـد مجموعـة هيدرو ماكس اسـماً رائـداً فـي الهيدروليك والنيوماتيك والتشكيل المعدنى">
+  <meta name="keywords" content="هيدرو ماكس, هيدروليك, نيوماتيك, تشكيل معدنى , معادن">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="text-center w-100" *ngIf="loading" style="padding: 100px;">
+  <app-spinner></app-spinner>
+</div>
+
+<div class="project-container" *ngIf="!loading && projectImages.length > 0">
+  <div class="project-header">
+    <h2>{{ projectName }}</h2>
+    <div class="section-underline"></div>
+    <p>{{ description }}</p>
+  </div>
+
+  <div class="slider-wrapper">
+    <button class="nav-btn prev-btn" (click)="prevImage()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <div class="slider-content">
+      <div class="slider-image-container" [style.transform]="'translateX(' + (currentIndex * 100) + '%)'">
+        <div class="slider-item" *ngFor="let img of projectImages">
+          <img [src]="environment + '/uploads/' + img.image" [alt]="projectName" />
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-btn next-btn" (click)="nextImage()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="projectImages.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد تفاصيل للمشروع حتى الآن</h3>
+</div>
+<a href="https://wa.me/201012514871" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">تواصل معنا</span>
+</a>
+</body>
+</html>

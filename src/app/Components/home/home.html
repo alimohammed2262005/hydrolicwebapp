@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>هيدرو ماكس للهيدروليك والنيوماتيك والتشكيل المعدنى</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تعـد مجموعـة هيدرو ماكس اسـماً رائـداً فـي الهيدروليك والنيوماتيك والتشكيل المعدنى">
+  <meta name="keywords" content="هيدرو ماكس, هيدروليك, نيوماتيك, تشكيل معدنى , معادن">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar-content">
+    <div class="contact-info">
+      <a href="tel:01050406059" class="contact-item">
+        <span>01050406059</span>
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="mailto:hydurmax@gmail.com" class="contact-item">
+        <span>hydurmax@gmail.com</span>
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <div class="social-links">
+      <a href="tel:01050406059" class="social-link" target="_blank">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="https://www.facebook.com/share/14SVmfvoxsX/" class="social-link" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://wa.me/201012514871" class="social-link" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:hydurmax@gmail.com" class="social-link" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<nav class="main-navbar" [class.scrolled]="isScrolled">
+  <div class="nav-wrapper">
+
+    <button class="mobile-menu-btn" 
+            (click)="toggleMenu($event)" 
+            [class.active]="isMenuOpen"
+            aria-label="القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links-area">
+<ul class="nav-menu" [class.active]="isMenuOpen">
+  <li>
+    <a (click)="navigateToSection('home')" class="nav-link active">الرئيسية</a>
+  </li>
+  <li>
+    <a (click)="navigateToSection('about')" class="nav-link">من نحن</a>
+  </li>
+  <li>
+    <a (click)="navigateToSection('services')" class="nav-link">خدماتنا</a>
+  </li>
+  <li>
+    <a (click)="navigateToProjects()" class="nav-link">مشاريعنا</a>
+  </li>
+  <li>
+    <a (click)="navigateToSection('contact')" class="nav-link">تواصل معنا</a>
+  </li>
+  <li *ngIf="isAuth && isAdmin">
+    <a (click)="navigateDashboard()" class="nav-link">لوحة الأدمن</a>
+  </li>
+  <li *ngIf="isAuth" class="nav-item auth-icon">
+    <a class="nav-link" (click)="LogOut(); toggleMenu()">
+      <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </li>
+  <li *ngIf="!isAuth" class="nav-item auth-icon">
+    <a class="nav-link" (click)="navigateLogIn(); toggleMenu()">
+      <i class="fas fa-sign-in-alt"></i>
+    </a>
+  </li>
+</ul>
+    </div>
+    <div class="logo-slant-box">
+      <div class="slant-background"></div>
+      <div class="logo-holder">
+<img src="logo.png" alt="هيدرو ماكس" class="header-logo" style="height: 95px ;">   
+   </div>
+    </div>
+
+  </div>
+</nav>
+
+<div class="nav-overlay" [class.active]="isMenuOpen" (click)="onItemClick()"></div>
+<div id="home" class="slider-container" (mouseenter)="pauseSlider()" (mouseleave)="resumeSlider()">
+  <div class="slide" [class.active]="currentSlide === 0" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920');">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1 class="slide-title">رؤيتنا</h1>
+<p class="slide-text">تسعى شركة هيدرو ماكس لتقديم حلول مبتكرة في الهيدروليك والنيوماتيك والتشكيل المعدني مع ضمان الكفاءة والجودة لعملائها.</p>
+      <a (click)="navigateToSection('services')" class="slide-button">
+        <span>متابعة المزيد</span>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="slider-controls">
+        <button class="slider-nav prev" (click)="prevSlide()"><i class="fas fa-chevron-right"></i></button>
+        <div class="slider-dots">
+          <span class="dot" [class.active]="currentSlide === 0" (click)="goToSlide(0)"></span>
+          <span class="dot" [class.active]="currentSlide === 1" (click)="goToSlide(1)"></span>
+          <span class="dot" [class.active]="currentSlide === 2" (click)="goToSlide(2)"></span>
+        </div>
+        <button class="slider-nav next" (click)="nextSlide()"><i class="fas fa-chevron-left"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" [class.active]="currentSlide === 1" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920');">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1 class="slide-title">مهمتنا</h1>
+<p class="slide-text">نسعى لتعزيز مكانة هيدرو ماكس في السوق الإقليمي من خلال حلول متقدمة في الهيدروليك والنيوماتيك والتشكيل المعدني مع أعلى معايير الجودة والكفاءة.</p>
+      <a (click)="navigateToSection('services')" class="slide-button">
+        <span>متابعة المزيد</span>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="slider-controls">
+        <button class="slider-nav prev" (click)="prevSlide()"><i class="fas fa-chevron-right"></i></button>
+        <div class="slider-dots">
+          <span class="dot" [class.active]="currentSlide === 0" (click)="goToSlide(0)"></span>
+          <span class="dot" [class.active]="currentSlide === 1" (click)="goToSlide(1)"></span>
+          <span class="dot" [class.active]="currentSlide === 2" (click)="goToSlide(2)"></span>
+        </div>
+        <button class="slider-nav next" (click)="nextSlide()"><i class="fas fa-chevron-left"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" [class.active]="currentSlide === 2" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920');">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1 class="slide-title">قيمنا</h1>
+      <p class="slide-text">سمعتنا ومكانتنا الحالية جاءت نتيجة لأساس قوي يرتكز إلى أخلاقيات الشركة الثابتة والمستدامة.</p>
+      <a (click)="navigateToValues()" class="slide-button">
+        <span>متابعة المزيد</span>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="slider-controls">
+        <button class="slider-nav prev" (click)="prevSlide()"><i class="fas fa-chevron-right"></i></button>
+        <div class="slider-dots">
+          <span class="dot" [class.active]="currentSlide === 0" (click)="goToSlide(0)"></span>
+          <span class="dot" [class.active]="currentSlide === 1" (click)="goToSlide(1)"></span>
+          <span class="dot" [class.active]="currentSlide === 2" (click)="goToSlide(2)"></span>
+        </div>
+        <button class="slider-nav next" (click)="nextSlide()"><i class="fas fa-chevron-left"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section-headers">
+      <h2 class="section-title">من نحن</h2>
+      <div class="section-underline"></div>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p class="about-paragraph">تعد شركة هيدرو ماكس للهيدروليك والنيوماتيك والتشكيل المعدني اسماً رائداً في مجالات الهيدروليك والنيوماتيك والتشكيل المعدني. من مقرها الرئيسي، تقدّم شركة هيدرو ماكس خدماتها وحلولها المبتكرة للعملاء محلياً وإقليمياً، مع الالتزام بأعلى معايير الجودة والكفاءة الصناعية.</p>
+      </div>
+      <div class="about-image">
+        <div class="image-wrapper">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600" alt="من نحن">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services-section" dir="rtl">
+  <div class="container">
+    <div class="section-header center">
+      <h2 class="section-title">ما هي الخدمات التي نقدمها</h2>
+      <p class="subtitle">مجموعـة هيدرو ماكس للهيدروليك والنيوماتيك والتشكيل المعدنى</p>
+      <div class="section-underline center"></div>
+    </div>
+
+   <div class="services-grid">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-icon">
+          <img [src]="environment+'/uploads/'+ service.image"
+               alt="{{ service.image }}"
+               class="img-fluid rounded shadow-sm"
+               style="max-height: 180px; object-fit: cover; width: 100%;" />
+        </div>
+        <h3>{{ service.name }}</h3>
+
+        <div class="d-flex justify-content-center mt-3">
+          <button (click)="getservicetypesbyserviceid(service.id)" class="gradient-text-link">
+            <i class="bi bi-list"></i> عرض المزيد
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="contact-cta" class="cta-section">
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">إذا كان لديك أي مشاريع أو أسئلة فلا تتردد في الاتصال بنا</h2>
+      <a href="https://wa.me/201012514871" class="cta-button" target="_blank">
+        <span>اتصل بنا</span>
+        <i class="fas fa-phone"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="clients" class="gallery-section">
+  <div class="container">
+    <div class="section-headers">
+      <h2 class="section-title">عملائنا</h2>
+      <div class="section-underline"></div>
+    </div>
+    <div class="gallery-container">
+      <div class="gallery-track">
+        <div class="gallery-item" *ngFor="let i of [].constructor(9); let idx = index">
+          <img [src]="(idx+1) + '.jpeg'" alt="مشروع {{ idx+1 }}">
+        </div>
+      </div>
+    </div>
+    <div class="gallery-controls">
+      <button class="gallery-btn prev" (click)="prevGalleryGroup()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="gallery-indicators">
+        <span *ngFor="let item of [].constructor(totalGalleryGroups); let i = index" class="indicator" [class.active]="currentGalleryGroup === i" (click)="goToGalleryGroup(i)"></span>
+      </div>
+      <button class="gallery-btn next" (click)="nextGalleryGroup()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>نبذة عن الشركة</h3>
+        <div class="footer-buttons">
+          <a href="https://drive.google.com/file/d/1ldhS54dFtYxggBfHtMCIYsduUZkqHHSX/view?usp=sharing" class="download-btn" target="_blank">
+            <i class="fas fa-download"></i>
+            <span>تحميل البروفايل </span>
+          </a>
+        </div>
+        <h4>من نحن</h4>
+        <p>تعـد مجموعـة هيدرو ماكس اسـماً رائـداً فـي الهيدروليك والنيوماتيك والتشكيل المعدنى.</p>
+      </div>
+      <div class="footer-col">
+        <h3>أهم الروابط</h3>
+        <ul class="footer-links">
+          <li><a (click)="navigateToSection('about')" style="cursor: pointer;">من نحن</a></li>
+          <li><a (click)="navigateToSection('services')" style="cursor: pointer;">خدماتنا</a></li>
+          <li><a (click)="navigateToSection('contact')" style="cursor: pointer;">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>تواصل معنا</h3>
+        <ul class="contact-list">
+          <li><a href="tel:01012514871" class="contact-item"><i class="fas fa-phone"></i><span>01012514871</span></a></li>
+          <li><a href="tel:01050406059" class="contact-item"><i class="fas fa-phone"></i><span>01050406059</span></a></li>
+          <li><a href="https://wa.me/201012514871" class="contact-item"><i class="fab fa-whatsapp"></i><span>01012514871</span></a></li>
+          <li><a href="mailto:hydurmax@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><span>hydurmax@gmail.com</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© مجموعة هيدرو ماكس 2026 | جميع الحقوق محفوظة</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201012514871" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">تواصل معنا</span>
+</a>
+</body>
+</html>

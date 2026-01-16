@@ -1,0 +1,37 @@
+<div *ngIf="apiMessage"
+     [ngClass]="{'alert': true, 'success': apiMessageType==='success', 'error': apiMessageType==='error'}"
+     style="margin: 0 auto 20px; text-align: center;">
+  {{ apiMessage }}
+</div>
+
+<div class="action-buttons-vertical" *ngIf="projectImages.length > 0" style="text-align: center; margin-bottom: 20px;">
+  <button class="btn btn-success" (click)="addImage()">إضافة صورة مشروع</button>
+  <button class="btn btn-warning" *ngIf="hasDeletedImages" (click)="restoreDeletedImages()">استرجاع الصور المحذوفة</button>
+</div>
+
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div class="projects-list" dir="rtl" *ngIf="!loading && projectImages.length > 0" [attr.data-count]="projectImages.length">
+  <div class="project-row" *ngFor="let img of projectImages">
+    <span class="project-name">{{ img.projectName }}</span>
+    <span class="project-image">
+      <img [src]="environment+'/uploads/'+ img.image"
+           alt="{{ img.image }}"
+           class="img-fluid rounded shadow-sm"
+           style="max-height: 280px; object-fit: cover; width: 100%;" />
+    </span>
+    <div class="row-actions">
+      <button class="btn btn-primary" (click)="updateImage(img.id)">تعديل</button>
+      <button class="btn btn-danger" (click)="deleteImage(img.id)">حذف</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="projectImages.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد صور مشاريع حتى الآن</h3>
+  <span>
+    <button (click)="addImage()">أضف الآن</button>
+  </span>
+</div>

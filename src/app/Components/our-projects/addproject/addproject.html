@@ -1,0 +1,48 @@
+<div class="project-form-dark">
+  <div class="project-form-wrapper">
+    <form [formGroup]="projectForm" (ngSubmit)="submit()">
+      <div *ngIf="message" 
+           [ngClass]="{'alert': true, 'success': messageType==='success', 'error': messageType==='error'}"
+           class="message-box">
+        {{ message }}
+      </div>
+
+      <h3 class="form-title">إضافة مشروع جديد</h3>
+
+      <div class="form-group">
+        <label>اسم المشروع</label>
+        <input type="text" class="form-control" formControlName="projectName" placeholder="أدخل اسم المشروع" />
+        <div *ngIf="projectName?.touched && projectName?.invalid" class="error">
+          <small *ngIf="projectName?.errors?.['required']">اسم المشروع مطلوب.</small>
+          <small *ngIf="projectName?.errors?.['pattern']">مسموح بالحروف فقط.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>وصف المشروع</label>
+        <textarea class="form-control" formControlName="projectDescription" placeholder="أدخل وصف المشروع"></textarea>
+        <div *ngIf="projectDescription?.touched && projectDescription?.invalid" class="error">
+          <small>الوصف مطلوب.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>نوع المشروع</label>
+        <input type="text" class="form-control" formControlName="projectType" placeholder="أدخل نوع المشروع" />
+        <div *ngIf="projectType?.touched && projectType?.invalid" class="error">
+          <small>النوع مطلوب.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>صورة المشروع</label>
+        <input type="file" class="form-control" (change)="onFileSelect($event)" formControlName="projectImage" />
+        <div *ngIf="projectImage?.touched && projectImage?.invalid" class="error">
+          <small>الصورة مطلوبة.</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="projectForm.invalid">إضافة المشروع</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div *ngIf="apiMessage" 
+     [ngClass]="{'alert': true, 'success': apiMessageType==='success', 'error': apiMessageType==='error'}"
+     style="margin: 0 auto 20px; text-align: center;">
+  {{ apiMessage }}
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<section class="services-section" dir="rtl">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let service of services">
+                <div class="service-icon">
+          <img 
+            [src]="environment + '/uploads/' + service.image" 
+            alt="{{ service.image }}" 
+            class="img-fluid rounded shadow-sm" 
+            style="max-height: 180px; object-fit: cover; width: 100%;" 
+          />
+        </div>
+        <h3>{{ service.name }}</h3>
+        <div class="service-actions" style="text-align: center; margin-top: 10px;">
+          <button class="btn btn-danger" (click)="restoreservice(service.id)">
+            استرجاع
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div *ngIf="services.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد أى خدمات محذوفة حتى الآن</h3>
+</div>

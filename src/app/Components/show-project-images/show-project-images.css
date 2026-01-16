@@ -1,0 +1,316 @@
+.project-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    direction: rtl;
+    text-align: center;
+}
+
+.project-header {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-header h2 {
+    color: #3d8d97;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    opacity: 0;
+    animation: slideDown 0.8s ease 0.3s forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to left, #3d8d97, #5dd5d5);
+    position: relative;
+    margin: 0 auto 30px auto;
+    animation: expandWidth 1s ease 0.6s backwards;
+}
+
+.section-underline::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    background: #47c8d8;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #47c8d8;
+    animation: slideRight 1s ease 0.8s backwards;
+    transform: translateY(-2px);
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80px;
+    }
+}
+
+@keyframes slideRight {
+    from {
+        right: -8px;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+.project-header p {
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: zoomIn 1s ease 1.2s forwards;
+}
+
+@keyframes zoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.slider-content {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.slider-image-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-item {
+    min-width: 100%;
+    height: 500px;
+}
+
+.slider-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #3d8d97;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+    padding: 0 15px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.5s forwards;
+}
+
+.nav-btn:hover {
+    color: #2a636a;
+}
+
+.prev-btn {
+    right: -70px;
+}
+
+.next-btn {
+    left: -70px;
+}
+
+.empty-state {
+    padding: 100px 20px;
+    text-align: center;
+    color: #888;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    left: auto;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #25D366, #20ba5a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: float 3s ease-in-out infinite, slideInRight 1s ease 1.8s backwards;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        right: -100px;
+        opacity: 0;
+    }
+    to {
+        right: 30px;
+        opacity: 1;
+    }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(360deg);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7);
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: 80px;
+    background: #2b2b2b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    right: 90px;
+}
+
+.whatsapp-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border: 8px solid transparent;
+    border-left-color: #2b2b2b;
+}
+
+@media (max-width: 1024px) {
+    .nav-btn {
+        font-size: 2rem;
+    }
+    .prev-btn { right: -40px; }
+    .next-btn { left: -40px; }
+}
+
+@media (max-width: 768px) {
+    .slider-item { height: 300px; }
+    .nav-btn { position: static; transform: none; margin: 10px 20px; }
+    .slider-wrapper { flex-direction: column; }
+    .project-header h2 { font-size: 1.8rem; }
+}
+
+.empty-cart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fdfdfd;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.empty-cart:hover {
+    transform: translate(-50%, -55%);
+}
+
+.empty-cart h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.empty-cart button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.empty-cart button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

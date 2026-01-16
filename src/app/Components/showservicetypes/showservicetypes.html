@@ -1,0 +1,15 @@
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<div class="services-list" *ngIf="!loading" dir="rtl">
+  <div class="service-row" *ngFor="let service of services">
+    <span class="service-name">{{ service.serviceName }}</span>
+    <span class="service-image">
+      <img [src]="environment+'/uploads/'+ service.image" alt="{{ service.image }}" class="img-fluid rounded shadow-sm" style="max-height: 180px; object-fit: cover; width: 100%;" />          
+    </span>
+    <span class="service-description">{{ service.description }}</span>
+  </div>
+</div>
+<div *ngIf="services.length === 0 && !loading" class="empty-cart">
+  <h3>لا توجد أى عناصر للخدمة حتى الآن</h3>
+</div>
